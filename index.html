@@ -61,11 +61,18 @@
             </div>
         </div>
         <h2 class="text-primary text-center mt-4">Search Products</h2>
-        <div class="form-floating mb-3 w-100 w-md-50 mx-auto search-container">
+       <div class="d-flex gap-2">
+         <div class="form-floating mb-3 w-100 w-md-50 mx-auto search-container">
             <input oninput="searchProductName()" type="search" class="form-control" id="searchProduct"
                 placeholder="Search Product">
-            <label for="searchProduct">Search</label>
+            <label for="searchProduct">Search By Name</label>
         </div>
+        <div class="form-floating mb-3 w-100 w-md-50 mx-auto search-container">
+            <input oninput="searchProductCat()" type="search" class="form-control" id="searchCat"
+                placeholder="Search Product">
+            <label for="searchCat">Search By Category</label>
+        </div>
+       </div>
 
     </div>
 
