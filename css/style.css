@@ -1,0 +1,41 @@
+.form-control:focus{
+    border-bottom: solid 1px gray;
+    box-shadow: none;
+}
+
+.form-control{
+    border: none;
+    border-bottom: 1px solid rgb(149, 147, 147);
+}
+textarea{
+    resize: none;
+}
+
+ body {
+        background-color: #f8f9fa;
+    }
+
+    .form-container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+    }
+
+    #row .card {
+        border-radius: 15px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    #row .card:hover {
+        transform: scale(1.02);
+    }
+
+    .btn {
+        width: 150px;
+    }
+
+    .search-container {
+        margin-top: 40px;
+    }
