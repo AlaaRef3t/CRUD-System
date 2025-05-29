@@ -9,8 +9,10 @@ var addBtn = document.getElementById("addBtn");
 var updateBtn = document.getElementById("updateBtn");
 var searchProduct = document.getElementById("searchProduct");
 var notFoundP = document.getElementById("notFoundP");
+var searchCat = document.getElementById("searchCat");
 
 var globalTerm;
+var catTerm;
 var globalIndex;
 var productList;
 
@@ -20,6 +22,7 @@ if (localStorage.getItem("productList") !== null) {
 } else {
     productList = [];
 }
+
 // Function to add product
 function addProduct() {
     var product = {
@@ -49,7 +52,7 @@ function displayProduct(productList) {
                     <img src="./images/${productList[i].img}" class="py-3 w-100"  alt="">
                     <p>Product Name :<strong> ${globalTerm ? productList[i].name.toLowerCase().replace(new RegExp(globalTerm, "i"), `<span class="bg-warning">${globalTerm}</span>`) : productList[i].name}</strong> </p>
                     <p>Product Price : <strong> ${productList[i].price}</strong> </p>
-                    <p>Product Category : <strong> ${productList[i].category}</strong> </p>
+                    <p>Product Category : <strong> ${catTerm ? productList[i].category.toLowerCase().replace(new RegExp(catTerm, "i"), `<span class="bg-warning">${catTerm}</span>`) : productList[i].category}</strong> </p>
                     <p>Product Description : <strong> ${productList[i].desc}</strong> </p>
                     <button class="btn btn-outline-success w-100 py-1 my-1" onclick="setFormToUpdate(${i})">Update</button>
                     <button class="btn btn-outline-danger w-100 py-1 my-1" onclick="deleteProduct(${i})">Delete</button>
@@ -116,7 +119,7 @@ function updateProduct() {
 
 }
 
-// function to search product
+// function to search product by name
 
 function searchProductName() {
     var term = searchProduct.value
@@ -129,6 +132,28 @@ function searchProductName() {
         if (productList[i].name.toLowerCase().includes(term.toLowerCase())) {
             searchList.push(productList[i]);
         }
-        displayProduct(searchList);
     }
+        displayProduct(searchList);
+
+}
+
+
+// function to search product by Category
+
+
+function searchProductCat() {
+    var term = searchCat.value;
+    console.log("hii");
+    
+    catTerm = term;
+
+    var catList = [];
+
+    for (var i = 0; i < productList.length; i++) {
+        if (productList[i].category.toLowerCase().includes(term.toLowerCase())) {
+            catList.push(productList[i]);
+        }
+    }
+        displayProduct(catList);
+
 }
