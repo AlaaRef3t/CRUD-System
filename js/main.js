@@ -135,46 +135,30 @@ function updateProduct() {
 
 function searchProductName() {
     var term = searchProduct.value
-
     globalTerm = term;
-
     var searchList = [];
-
     for (var i = 0; i < productList.length; i++) {
         if (productList[i].name.toLowerCase().includes(term.toLowerCase())) {
             searchList.push(productList[i]);
         }
     }
         displayProduct(searchList);
-
 }
-
-
 // function to search product by Category
-
-
 function searchProductCat() {
     var term = searchCat.value;
-    console.log("hii");
-    
     catTerm = term;
-
     var catList = [];
-
     for (var i = 0; i < productList.length; i++) {
         if (productList[i].category.toLowerCase().includes(term.toLowerCase())) {
             catList.push(productList[i]);
         }
     }
         displayProduct(catList);
-
 }
-
 // Validation regex Name
-
 function productNameValidation() {
     var regex = /^[A-Z][a-z]{2,10}$/;
-
     if (regex.test(productName.value) === true) {
         validationError.classList.replace("d-block","d-none")
         productName.classList.add("is-valid")
@@ -184,7 +168,6 @@ function productNameValidation() {
         validationError.classList.replace("d-none","d-block")
         productName.classList.add("is-invalid")
         productName.classList.remove("is-valid")
-
         return false;
     }
 }
@@ -192,9 +175,7 @@ function productNameValidation() {
 // Validation Regex Price
 
 function productPriceValidation() {
-
      var regex = /^(20000|[2-4][0-9]{4}|50000)$/;
-
     if (regex.test(productPrice.value.trim()) === true) {
         validationPriceError.classList.replace("d-block","d-none")
         productPrice.classList.add("is-valid")
