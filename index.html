@@ -12,14 +12,15 @@
 
 <body>
     <div class="container">
-        <div class="form-container w-100 w-md-75 mx-auto">
+        <div class="form-container w-75 w-md-75 mx-auto">
             <h1 class="fw-bolder text-primary text-center mb-4">Product Management System</h1>
 
             <!-- Form Fields -->
             <div class="form-floating mb-3">
-                <input list="nameList" type="text" class="form-control" id="productName" placeholder="Product Name"
+                <input oninput="productNameValidation()" list="nameList" type="text" class="form-control" id="productName" placeholder="Product Name"
                     required>
                 <label for="productName">Product Name</label>
+                <div id="validationError" class="alert-custom d-none">Name must start with a capital letter</div>
                 <datalist id="nameList">
                     <option>Samsung</option>
                     <option>Apple</option>
@@ -29,14 +30,18 @@
             </div>
 
             <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="productPrice" placeholder="Product Price" required>
+                <input oninput="productPriceValidation()" type="number" class="form-control" id="productPrice" placeholder="Product Price" required>
                 <label for="productPrice">Product Price</label>
+                <div id="validationPriceError" class="alert-custom d-none">Price must between 20000 and 50000</div>
+
             </div>
 
             <div class="form-floating mb-3">
-                <input list="catList" type="text" class="form-control" id="productCat" placeholder="Product Category"
+                <input oninput="productCategoryValidation()" list="catList" type="text" class="form-control" id="productCat" placeholder="Product Category"
                     required>
                 <label for="productCat">Product Category</label>
+                <div id="validationCategoryError" class="alert-custom d-none">Category Must be Phone, Tablet, TV, Electronics </div>
+
                 <datalist id="catList">
                     <option>Phone</option>
                     <option>Tv</option>
@@ -46,8 +51,10 @@
             </div>
 
             <div class="form-floating mb-3">
-                <textarea class="form-control" id="productDesc" placeholder="Product Description" required></textarea>
+                <textarea oninput="productDescValidation()" class="form-control" id="productDesc" placeholder="Product Description" required></textarea>
                 <label for="productDesc">Product Description</label>
+                <div id="validationDescError" class="alert-custom d-none">Minimum description: 30 characters, maximum description: 20,000 characters</div>
+
             </div>
 
             <div class="form-floating mb-3">
@@ -61,7 +68,7 @@
             </div>
         </div>
         <h2 class="text-primary text-center mt-4">Search Products</h2>
-       <div class="d-flex gap-2">
+       <div class="d-flex gap-2 w-75 mx-auto">
          <div class="form-floating mb-3 w-100 w-md-50 mx-auto search-container">
             <input oninput="searchProductName()" type="search" class="form-control" id="searchProduct"
                 placeholder="Search Product">
@@ -76,7 +83,7 @@
 
     </div>
 
-    <div class="container py-5">
+    <div class="container py-5 w-75">
 
         <h2 class="text-primary text-center mb-4">Available Products</h2>
         <div class="row g-4" id="row">
