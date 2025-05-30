@@ -10,6 +10,10 @@ var updateBtn = document.getElementById("updateBtn");
 var searchProduct = document.getElementById("searchProduct");
 var notFoundP = document.getElementById("notFoundP");
 var searchCat = document.getElementById("searchCat");
+var validationError = document.getElementById("validationError");
+var validationPriceError = document.getElementById("validationPriceError");
+var validationCategoryError = document.getElementById("validationCategoryError");
+var validationDescError = document.getElementById("validationDescError");
 
 var globalTerm;
 var catTerm;
@@ -25,7 +29,9 @@ if (localStorage.getItem("productList") !== null) {
 
 // Function to add product
 function addProduct() {
-    var product = {
+
+    if (productNameValidation() && productPriceValidation() && productCategoryValidation() && productDescValidation() ) {
+        var product = {
 
         name: productName.value,
         price: productPrice.value,
@@ -37,6 +43,12 @@ function addProduct() {
     displayProduct(productList);
     clearInputs();
     saveToLocalStorage();
+    } else {
+        console.log("Not true");
+        
+        
+    }
+    
 
 }
 
@@ -156,4 +168,81 @@ function searchProductCat() {
     }
         displayProduct(catList);
 
+}
+
+// Validation regex Name
+
+function productNameValidation() {
+    var regex = /^[A-Z][a-z]{2,10}$/;
+
+    if (regex.test(productName.value) === true) {
+        validationError.classList.replace("d-block","d-none")
+        productName.classList.add("is-valid")
+        productName.classList.remove("is-invalid")
+        return true;
+    } else {
+        validationError.classList.replace("d-none","d-block")
+        productName.classList.add("is-invalid")
+        productName.classList.remove("is-valid")
+
+        return false;
+    }
+}
+
+// Validation Regex Price
+
+function productPriceValidation() {
+
+     var regex = /^(20000|[2-4][0-9]{4}|50000)$/;
+
+    if (regex.test(productPrice.value.trim()) === true) {
+        validationPriceError.classList.replace("d-block","d-none")
+        productPrice.classList.add("is-valid")
+        productPrice.classList.remove("is-invalid")
+        return true;
+    } else {
+        validationPriceError.classList.replace("d-none","d-block")
+        productPrice.classList.add("is-invalid")
+        productPrice.classList.remove("is-valid")
+
+        return false;
+    }
+}
+
+// validation regex category
+
+function productCategoryValidation() {
+    var regex = /^(TV|Tablets|Phone|Electronics|Tv)$/;
+
+    if (regex.test(productCat.value) === true) {
+        validationCategoryError.classList.replace("d-block","d-none")
+        productCat.classList.add("is-valid")
+        productCat.classList.remove("is-invalid")
+        return true;
+    } else {
+        validationCategoryError.classList.replace("d-none","d-block")
+        productCat.classList.add("is-invalid")
+        productCat.classList.remove("is-valid")
+
+        return false;
+    }
+}
+
+// Validation regex Description
+
+function productDescValidation() {
+    var regex = /^.{8,20000}$/s;
+
+    if (regex.test(productDesc.value) === true) {
+        validationDescError.classList.replace("d-block","d-none")
+        productDesc.classList.add("is-valid")
+        productDesc.classList.remove("is-invalid")
+        return true;
+    } else {
+        validationDescError.classList.replace("d-none","d-block")
+        productDesc.classList.add("is-invalid")
+        productDesc.classList.remove("is-valid")
+
+        return false;
+    }
 }
